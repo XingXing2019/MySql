@@ -94,3 +94,53 @@ ALTER TABLE emp5 ADD COLUMN test_column VARCHAR(20);
 ALTER TABLE emp5 DROP COLUMN test_column;
 
 
+CREATE database students;
+USE students;
+
+CREATE TABLE IF NOT EXISTS major(
+	id INT PRIMARY KEY,
+	major_name VARCHAR(20)
+);
+
+CREATE TABLE IF NOT EXISTS stu_info(
+	id INT PRIMARY KEY,
+	NAME VARCHAR(20) NOT NULL,
+	gender CHAR CHECK (gender='male' OR gender = 'female'),
+	seat INT UNIQUE,
+	age INT DEFAULT 18
+);
+
+DESC stu_info;
+
+
+DROP TABLE IF EXISTS stu_info;
+
+CREATE TABLE stu_info(
+	id INT,
+	stu_name VARCHAR(20),
+	gender CHAR,
+	seat INT,
+	age INT,
+	major_id INT,
+	
+	CONSTRAINT pk PRIMARY KEY(id),
+	CONSTRAINT uq UNIQUE(seat),
+	CONSTRAINT ck CHECK(gender = 'male' OR gender = 'female'),
+	CONSTRAINT fk_major FOREIGN KEY(major_id) REFERENCES major(id) 
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
