@@ -129,18 +129,49 @@ CREATE TABLE stu_info(
 	CONSTRAINT fk_major FOREIGN KEY(major_id) REFERENCES major(id) 
 )
 
+DROP TABLE if EXISTS stu_info;
+DROP TABLE if EXISTS major;
+
+CREATE TABLE if NOT EXISTS major(
+	id INT PRIMARY KEY,
+	major_name VARCHAR(20) NOT null
+);
+
+CREATE TABLE if NOT EXISTS stu_info(
+	id INT PRIMARY KEY,
+	stu_name VARCHAR(20) NOT NULL,
+	age INT NOT NULL,
+	gender CHAR NOT NULL,
+	major_id INT,
+	
+	CONSTRAINT fk_major FOREIGN KEY(major_id) REFERENCES major(id)
+);
 
 
+ALTER TABLE stu_info MODIFY COLUMN stu_name VARCHAR(20) NOT NULL;
 
 
+CREATE TABLE if NOT EXISTS emp2(
+	id INT	
+);
 
+CREATE TABLE dep2(
+	id INT
+);
 
+ALTER TABLE emp2 MODIFY COLUMN id INT PRIMARY KEY;
 
+ALTER TABLE dep2 MODIFY COLUMN id INT PRIMARY KEY;
 
+ALTER TABLE emp2 ADD COLUMN dep_id INT;
+ALTER TABLE emp2 ADD CONSTRAINT fk_dep2 FOREIGN KEY (dep_id) REFERENCES dep2(id);
 
+CREATE TABLE if NOT EXISTS tab_identity(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(20)
+);
 
-
-
+INSERT INTO tab_identity VALUES (NULL, 'John');
 
 
 
