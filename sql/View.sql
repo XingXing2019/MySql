@@ -54,6 +54,38 @@ SELECT d.* FROM departments d JOIN minSalary m ON d.department_id = m.department
 
 DROP VIEW avgsalary, v1, minSalary;
 
-
 SHOW CREATE VIEW avgsalary;
+
+CREATE OR REPLACE VIEW emp_v1
+AS 
+SELECT e.last_name, e.salary, e.email
+FROM employees e
+WHERE e.phone_number LIKE '011%';
+
+CREATE OR REPLACE VIEW emp_v2
+AS
+SELECT d.*
+FROM employees e LEFT JOIN departments d
+ON e.department_id = d.department_id
+GROUP BY d.department_id
+HAVING MAX(e.salary) > 12000;
+
+
+CREATE OR REPLACE VIEW  myv1
+AS SELECT last_name, email
+FROM employees;
+
+SELECT * FROM myv1;
+
+#Insert
+INSERT INTO myv1 VALUES('Tim', 'tim@unsw.edu.au');
+
+#Update
+UPDATE myv1 SET last_name = 'Tom' WHERE last_name = 'Tim';
+
+#Delete
+DELETE FROM myv1 WHERE last_name = 'Tom';
+
+
+
 
